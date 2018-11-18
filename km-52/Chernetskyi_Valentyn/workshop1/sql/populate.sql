@@ -29,14 +29,15 @@ INSERT INTO "group"
 VALUES (4, 'name4');
 
 
-INSERT INTO "students"
+INSERT INTO "students" (st_id, st_email, st_first_name, st_last_name)
 VALUES (1, 'first_name1@com', 'first_name1', 'first_name1');
-INSERT INTO "students"
+INSERT INTO "students" (st_id, st_email, st_first_name, st_last_name)
 VALUES (2, 'first_name2@com', 'first_name2', 'first_name2');
-INSERT INTO "students"
+INSERT INTO "students" (st_id, st_email, st_first_name, st_last_name)
 VALUES (3, 'first_name3@com', 'first_name3', 'first_name3');
-INSERT INTO "students"
+INSERT INTO "students" (st_id, st_email, st_first_name, st_last_name)
 VALUES (4, 'first_name4@com', 'first_name4', 'first_name4');
+
 
 INSERT INTO "users"
 VALUES (1, 'first_name5@com', 'first_name5', False);
