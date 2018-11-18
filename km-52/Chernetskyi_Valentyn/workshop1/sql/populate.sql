@@ -1,11 +1,11 @@
 INSERT INTO "university"
-VALUES ('name1');
+VALUES (1, 'name1');
 INSERT INTO "university"
-VALUES ('name4');
+VALUES (2, 'name4');
 INSERT INTO "university"
-VALUES ('name3');
+VALUES (3, 'name3');
 INSERT INTO "university"
-VALUES ('name2');
+VALUES (4, 'name2');
 
 INSERT INTO "faculty"
 VALUES (1, 'nam1');
