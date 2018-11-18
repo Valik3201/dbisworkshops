@@ -1,59 +1,46 @@
-BEGIN;
-
-CREATE TABLE alembic_version (
-    version_num VARCHAR(32) NOT NULL, 
-    CONSTRAINT alembic_version_pkc PRIMARY KEY (version_num)
+CREATE TABLE "university" (
+    univer_id INT NOT NULL, 
+    univer_name VARCHAR(5) NOT NULL, 
+    PRIMARY KEY (univer_id), 
+    UNIQUE (univer_name)
 );
 
--- Running upgrade  -> ba40012b7086
-
-CREATE TABLE university (
-    id SERIAL NOT NULL, 
-    name VARCHAR(5) NOT NULL, 
-    PRIMARY KEY (id), 
-    UNIQUE (name)
+CREATE TABLE "users" (
+    user_id INT NOT NULL, 
+    user_email VARCHAR(255) NOT NULL, 
+    user_password VARCHAR(255) NOT NULL, 
+    registered_on TIMESTAMP WITH TIME ZONE NOT NULL, 
+    user_admin BOOLEAN NOT NULL, 
+    PRIMARY KEY (user_id), 
+    UNIQUE (user_email)
 );
 
-CREATE TABLE users (
-    id SERIAL NOT NULL, 
-    email VARCHAR(255) NOT NULL, 
-    password VARCHAR(255) NOT NULL, 
-    registered_on TIMESTAMP WITHOUT TIME ZONE NOT NULL, 
-    admin BOOLEAN NOT NULL, 
-    PRIMARY KEY (id), 
-    UNIQUE (email)
-);
-
-CREATE TABLE fuc (
-    id SERIAL NOT NULL, 
-    name VARCHAR(5) NOT NULL, 
-    university_id INTEGER NOT NULL, 
-    PRIMARY KEY (id), 
-    FOREIGN KEY(university_id) REFERENCES university (id), 
-    UNIQUE (name)
+CREATE TABLE "faculty" (
+    faculty_id INT NOT NULL, 
+    faculty_name VARCHAR(5) NOT NULL, 
+    university_id INT NOT NULL, 
+    PRIMARY KEY (faculty_id), 
+    FOREIGN KEY(university_id) REFERENCES "university" (univer_id), 
+    UNIQUE (faculty_name)
 );
 
 CREATE TABLE "group" (
-    id SERIAL NOT NULL, 
-    name VARCHAR(5) NOT NULL, 
-    fuc_id INTEGER NOT NULL, 
-    PRIMARY KEY (id), 
-    FOREIGN KEY(fuc_id) REFERENCES fuc (id), 
-    UNIQUE (name)
+    groups_id INT NOT NULL, 
+    group_name VARCHAR(5) NOT NULL, 
+    fac_id INTEGER NOT NULL, 
+    PRIMARY KEY (groups_id), 
+    FOREIGN KEY(fac_id) REFERENCES "faculty" (faculty_id), 
+    UNIQUE (group_name)
 );
 
-CREATE TABLE students (
-    id SERIAL NOT NULL, 
-    email VARCHAR(255) NOT NULL, 
-    first_name VARCHAR(255) NOT NULL, 
-    last_name VARCHAR(255) NOT NULL, 
-    group_id INTEGER NOT NULL, 
-    PRIMARY KEY (id), 
-    FOREIGN KEY(group_id) REFERENCES "group" (id), 
-    UNIQUE (email)
+
+CREATE TABLE "students" (
+    st_id INT NOT NULL, 
+    st_email VARCHAR(255) NOT NULL, 
+    st_first_name VARCHAR(255) NOT NULL, 
+    st_last_name VARCHAR(255) NOT NULL, 
+    groups_st_id INT NOT NULL, 
+    PRIMARY KEY (st_id), 
+    FOREIGN KEY(groups_st_id) REFERENCES "group" (groups_id), 
+    UNIQUE (st_email)
 );
-
-INSERT INTO alembic_version (version_num) VALUES ('ba40012b7086');
-
-COMMIT;
-
