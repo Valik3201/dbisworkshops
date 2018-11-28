@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>student</title>
+</head>
+<body>
+
+
+    <form action = "/api" method = "POST" id="form_student">
+        <p>First name <input type = "text" name = "first_name" value="{{student.get('first_name')}}" /></p>
+		<p>Last name <input type = "text" name = "last_name" value="{{student.get('last_name')}}" /></p>
+
+     </form>
+
+    <button type="submit" form="form_student" name="action" value="student_update">Submit</button>
+
+
+</body>
+</html>
