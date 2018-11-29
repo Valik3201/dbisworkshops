@@ -26,7 +26,7 @@ def apiget(action):
         return render_template("all.html", user=user_list, student=student_list)
 
     else:
-        return render_template("404.html", action_value=action, link=["user", "student"])
+        return render_template("404.html", name=['user', 'student', 'all'], action_value=action, link=["user", "student"])
 
 @app.route('/api', methods=['POST'])
 def apipost():
