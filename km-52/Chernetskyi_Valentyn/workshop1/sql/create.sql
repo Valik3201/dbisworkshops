@@ -10,7 +10,7 @@ CREATE TABLE "users" (
     user_email VARCHAR(255) NOT NULL, 
     user_password VARCHAR(255) NOT NULL, 
     registered_on TIMESTAMP WITH TIME ZONE NOT NULL, 
-    user_admin BOOLEAN NOT NULL, 
+    user_admin char(1) DEFAULT '0', 
     PRIMARY KEY (user_id), 
     UNIQUE (user_email)
 );
