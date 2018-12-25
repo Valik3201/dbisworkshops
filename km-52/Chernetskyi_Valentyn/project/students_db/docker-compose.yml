@@ -1,0 +1,32 @@
+version: '3.5'
+
+services:
+
+  web:
+    image: web
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    volumes:
+      - '.:/usr/src/app'
+    ports:
+      - 5002:5000
+    environment:
+      - APP_NAME=students_db
+      - FLASK_DEBUG=1
+      - PYTHONUNBUFFERED=0
+      - APP_SETTINGS=project.server.config.DevelopmentConfig
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/students_db
+      - DATABASE_TEST_URL=postgres://postgres:postgres@db:5432/postgres
+      - SECRET_KEY=change_me_in_prod
+    depends_on:
+      - db
+
+  db:
+    image: postgres:10.3-alpine
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=students_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
